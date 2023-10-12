@@ -27,6 +27,7 @@ from .models import Appointment, Service
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .models import Service, Appointment
+from django.core.mail import send_mail
 
 @csrf_exempt
 def submit_appointment(request):
@@ -53,18 +54,29 @@ def submit_appointment(request):
         appointment.save()
 
            # Send an email confirmation
-        
+        send_confirmation_email(name, email, service.name, appointment_date)
 
         return JsonResponse({'message': 'Appointment saved successfully!'})
 
-        return JsonResponse({'message': 'Invalid request method.'}, status=400)
+    return JsonResponse({'message': 'Invalid request method.'}, status=400)
 
+def send_confirmation_email(name, email, service, appointment_date):
+    subject = 'Car Service Appointment Confirmation'
+    message = f'Dear {name},\n\n Your appointment for {service} on {appointment_date} has been confirmed.'
+
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [email],
+        fail_silently=False,
+    )
 
 
 
  
 
-
+#contact us
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt

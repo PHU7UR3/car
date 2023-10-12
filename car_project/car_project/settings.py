@@ -125,3 +125,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+# settings.py
+
+# Configure SMTP settings for sending emails using Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'rithwikreddy260@gmail.com'  # Replace with your Gmail email address
+EMAIL_HOST_PASSWORD = 'FHhjQdCGyzY9tZmB'  # Replace with your Gmail password
+DEFAULT_FROM_EMAIL = 'admin@sec.com'  # Replace with your Gmail email address
