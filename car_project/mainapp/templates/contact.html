@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      border-bottom: 2px solid #4CAF50;
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 100px auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container h2 {
+      color: #333;
+    }
+
+    .about-container p {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .about-container ul {
+      padding-left: 20px;
+      color: #333;
+    }
+
+    .about-container ul li {
+      margin-bottom: 5px;
+    }
+
+    .about-container a {
+      color: #007BFF;
+    }
+
+    .about-container a:hover {
+      color: #0056b3;
+    }
+
+    .book-button-container {
+      margin-top: 30px;
+    }
+
+    .book-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .book-button:hover {
+      background-color: #45a049;
+    }
+    .contact-container {
+      max-width: 500px;
+      margin: 80px auto; /* Adjust margin as needed */
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+    }
+
+   
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'about' %}" class="About-button">About</a>
+    <a href="{% url 'our_services' %}" class="Services-button">Services</a>
+    <a href="{% url 'contact' %}" class="contact-button">Contact Us</a>
+    <button class="book-button" onclick="redirectToServiceSelection()">Book Appointment</button>
+  </div>
+</nav>
+
+<div class="contact-container">
+  <h2>Contact Us</h2>
+  <form class="contact-form" onsubmit="sanitizeInput(event)">
+    <input id="nameInput" type="text" placeholder="Your Name" required><br>
+    <input id="emailInput" type="email" placeholder="Your Email" required><br>
+    <textarea id="messageInput" placeholder="Your Message" rows="5" required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+  
+</div>
+
+<script>
+ function sanitizeInput(event) {
+      // Sanitize input (you can add more sanitization if needed)
+      const nameInput = escapeHtml(document.getElementById('nameInput').value);
+      const emailInput = escapeHtml(document.getElementById('emailInput').value);
+      const messageInput = escapeHtml(document.getElementById('messageInput').value);
+
+      // Create a JavaScript object with the form data
+      const formData = {
+        name: nameInput,
+        email: emailInput,
+        message: messageInput
+      };
+
+      // Convert the JavaScript object to a JSON string
+      const jsonData = JSON.stringify(formData);
+
+      // Send the form data to the Django backend using the fetch API
+      fetch('/contact_message/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: jsonData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Message saved successfully:', data);
+        alert('Message sent successfully!');
+      })
+      .catch(error => {
+        console.error('Error saving message:', error);
+        alert('Error sending message. Please try again.');
+      });
+
+      event.preventDefault();  // Prevent the form from submitting through traditional means
+    }
+
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  function redirectToServiceSelection() {
+    window.location.href = 'service_selection.html';
+  }
+
+
+
+</script>
+
+
+</body>
+</html>

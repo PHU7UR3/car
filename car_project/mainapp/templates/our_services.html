@@ -1,0 +1,319 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="/mainapp/static/images/" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  
+  <title>Motora</title>
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      border-bottom: 2px solid #4CAF50;
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    
+    }
+
+    /* Header styling */
+    .header_section {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    .header_section .navbar-brand {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .header_section .navbar-nav .nav-item {
+        margin: 0 10px;
+    }
+
+    .header_section .nav-link {
+        color: #fff !important;
+        font-weight: bold;
+    }
+
+    .header_section .nav-link:hover {
+        color: #4CAF50 !important;
+    }
+
+    /* Service section styling */
+    .service_section {
+        padding: 50px 0;
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    .service_section .heading_container {
+        margin-bottom: 30px;
+    }
+
+    .service_section .service_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: left;
+    }
+
+    .service_section .box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .service_section .box img {
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .service_section .box h4 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .service_section .box p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .service_section .box a {
+        font-size: 16px;
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    .service_section .box a:hover {
+        color: #333;
+    }
+
+    /* Info section styling */
+    .info_section {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+    }
+
+    .info_section .info_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .info_section .info_contact .link-box {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    .info_section .info_contact .link-box i {
+        margin-right: 10px;
+    }
+
+    .info_section .info_form input {
+        width: 70%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .info_section .info_form button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: #fff;
+    }
+
+    .info_section .info_form button i {
+        margin-left: 10px;
+    }
+
+    .info_section .info_form button:hover {
+        background-color: #45a049;
+    }
+    .book-button-container {
+      margin-top: 30px;
+    }
+
+    .book-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .book-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav>
+    <div>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}" class="About-button">About</a>
+      <a href="{% url 'our_services' %}" class="Services-button">Services</a>
+      <a href="{% url 'contact' %}" class="contact-button">Contact Us</a>
+      <button class="book-button" onclick="redirectToServiceSelection()">Book Appointment</button>
+    </div>
+  </nav>
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Services
+        </h2>
+      </div>
+      <div class="service_grid">
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s1.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h4>
+              General Maintenance
+            </h4>
+            <p>
+              Our comprehensive general maintenance services keep your vehicle in optimal condition, ensuring a smooth and safe ride.
+            </p>
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s2.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h4>
+              Repair and Replacement
+            </h4>
+            <p>
+              Trust us for reliable and efficient repair and replacement services, addressing any issues with precision and expertise.
+            </p>
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s3.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h4>
+              Tyre Repair and Replacement
+            </h4>
+            <p>
+              From tire repairs to replacements, we take care of your tire needs to keep you rolling smoothly on the road.
+            </p>
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s4.png' %}" alt="">
+
+          </div>
+          <div class="detail-box">
+            <h4>
+              Wheel Alignment
+            </h4>
+            <p>
+              Achieve better handling and prolong tire life with our precise wheel alignment services, enhancing your driving experience.
+            </p>
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s5.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h4>
+              Fuel System Repair
+            </h4>
+            <p>
+              Ensure your vehicle's fuel efficiency and performance with our professional fuel system repair solutions.
+            </p>
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s6.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h4>
+              Tune Up
+            </h4>
+            <p>
+              Experience improved engine performance and fuel economy with our thorough and effective tune-up services.
+            </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+  <script>
+    function redirectToServiceSelection() {
+      window.location.href = 'service_selection.html';
+    }
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      border-bottom: 2px solid #4CAF50;
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 100px auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container h2 {
+      color: #333;
+    }
+
+    .about-container p {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .about-container ul {
+      padding-left: 20px;
+      color: #333;
+    }
+
+    .about-container ul li {
+      margin-bottom: 5px;
+    }
+
+    .about-container a {
+      color: #007BFF;
+    }
+
+    .about-container a:hover {
+      color: #0056b3;
+    }
+
+    .book-button-container {
+      margin-top: 30px;
+    }
+
+    .book-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .book-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}" class="About-button">About</a>
+      <a href="{% url 'our_services' %}" class="Services-button">Services</a>
+      <a href="{% url 'contact' %}" class="contact-button">Contact Us</a>
+      <button class="book-button" onclick="redirectToServiceSelection()">Book Appointment</button>
+    </div>
+  </nav>
+  
+
+  <div class="about-container">
+    <h2>About TechTune Motors</h2>
+    <p>
+      Welcome to TechTune Motors, your trusted multi-brand car service center. We are dedicated to providing top-notch car maintenance and repair services for various car brands, ensuring a smooth and reliable driving experience for our customers.
+    </p>
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to offer exceptional car services by employing highly skilled professionals, utilizing the latest technologies, and maintaining the highest standards of quality and integrity. We aim to exceed customer expectations and build lasting relationships.
+    </p>
+
+    <h2>Our Values</h2>
+    <ul>
+      <li>Customer Satisfaction: Putting our customers' needs and satisfaction at the forefront of all our efforts.</li>
+      <li>Quality Service: Delivering services of the highest quality and reliability.</li>
+      <li>Integrity: Upholding honesty, transparency, and ethical practices in all our dealings.</li>
+      <li>Continuous Improvement: Embracing innovation and continuously improving our services and processes.</li>
+    </ul>
+
+    <h2>Our Team</h2>
+    <p>
+      Our dedicated team of automotive professionals is passionate about cars and committed to providing the best possible service. With years of experience and expertise, we ensure that your vehicle is in safe hands.
+    </p>
+
+    <h2>Contact Us</h2>
+    <p>
+      Have questions or need assistance? Contact us at <a href="mailto:info@yourcar-service.com">info@yourcar-service.com</a> or call us at (+91)9980221122.
+    </p>
+  </div>
+
+  <script>
+    function redirectToServiceSelection() {
+      window.location.href = 'service_selection.html';
+    }
+  </script>
+</body>
+</html>
+ 

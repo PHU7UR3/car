@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Service Website</title>
+    <style>
+        /* Global styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Styles for the testimonials section */
+        .testimonials-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .testimonials-heading {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .testimonials-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%; /* Adjust width as needed */
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to right, #e8eaf6, #f5f5f5);
+        }
+
+        .testimonial {
+            width: 100%;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            text-align: center;
+        }
+
+        .testimonial-text h3 {
+            margin: 0;
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .testimonial-text p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Styles for the slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 5px auto 0;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 5px;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Styles for the counter section */
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            width: 100%; /* Adjust width as needed */
+            margin-top: 20px;
+        }
+
+        .counter {
+            text-align: center;
+            margin: 20px;
+            width: 150px;
+        }
+
+        .count {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 18px;
+        }
+
+        /* Styles for the navigation bar */
+        nav {
+          display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+            border-bottom: 2px solid #4CAF50;
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure it's on top */
+}
+
+        
+
+        .logo {
+            color: #4CAF50;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: auto;
+            margin-left: 20px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        .book-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        .book-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        TechTune Motors
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'index' %}" class="home-buttonsS">Home</a>
+        <a href="{% url 'about' %}" class="About-button">About</a>
+        <div class="dropdown"> 
+            <a href="{% url 'our_services' %}">Services</a>
+        </div>
+        <a href="{% url 'contact' %}" class="contact-button">Contact Us</a>
+        
+        <button class="book-button" onclick="redirectToServiceSelection()">Book Appointment</button>
+    </div>
+</nav>
+
+
+
+<div class="slideshow-container">
+    <div class="mySlides">
+        <img src="{% static 'images/image1.jpg' %}" alt="">
+    </div>
+    <div class="mySlides">
+        <img src="{% static 'images/image2.jpg' %}" alt="">
+    </div>
+   
+    <!-- Add more slides as needed -->
+
+    <!-- Navigation arrows -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+</div>
+
+<div class="counter-container">
+    <div class="counter">
+        <div class="count" id="yearsCount">0</div>
+        <div class="label">Years of Experience</div>
+    </div>
+
+    <div class="counter">
+        <div class="count" id="techniciansCount">0</div>
+        <div class="label">Expert Technicians</div>
+    </div>
+
+    <div class="counter">
+        <div class="count" id="clientsCount">0</div>
+        <div class="label">Satisfied Clients</div>
+    </div>
+
+    <div class="counter">
+        <div class="count" id="projectsCount">0</div>
+        <div class="label">Complete Projects</div>
+    </div>
+</div>
+
+<div class="testimonials-section">
+    <h2 class="testimonials-heading">Testimonials</h2>
+    <div class="testimonials-container">
+        <div class="testimonial">
+            <div class="testimonial-text">
+                <h3>Ashif Kolkar</h3>
+                <p>Very nice receiving, they listen to what you say, on-time delivery with proper work done. They never disappoint me in service. Best of luck Raju bhai. You guys deserve more than 5 stars!</p>
+            </div>
+        </div>
+
+        <div class="testimonial">
+            <div class="testimonial-text">
+                <h3>VENKATESH BM</h3>
+                <p>I have given my Nissan Sunny for body repair work. I am so happy with the workmanship and quality of work. Owner Mr. Raju is so kind and his approach is fantastic. Good hospitality. I am so impressed and suggest to car owners to visit for their needs.</p>
+            </div>
+        </div>
+
+          <div class="testimonial">
+            <div class="testimonial-text">
+                <h3>Narayana G</h3>
+                <p>Very good service. Very polite mechanic, supervisor and owner also. Immediately attended my problem and set right the problem also. Thanks to Raju and his team.</p>
+            </div>
+        </div>
+
+
+
+        <div class="testimonial">
+            <div class="testimonial-text">
+                <h3>Keerthi Raj</h3>
+                <p>Best car service care in R.R.Nagar. Customer friendly service. Car owners please do visit to get your car the best care.</p>
+            </div>
+        </div>
+          
+
+
+
+
+    </div>
+
+<script>
+
+    // JavaScript for testimonials slideshow
+    let slideIndexTestimonials = 0;
+    showTestimonials();
+
+    function showTestimonials() {
+        const testimonials = document.querySelectorAll('.testimonial');
+        for (let i = 0; i < testimonials.length; i++) {
+            testimonials[i].style.display = 'none';
+        }
+
+        slideIndexTestimonials++;
+        if (slideIndexTestimonials > testimonials.length) { slideIndexTestimonials = 1 }
+
+        testimonials[slideIndexTestimonials - 1].style.display = 'block';
+        setTimeout(showTestimonials, 3000); // Change testimonial every 3 seconds
+    }
+
+let slideIndex = 0;
+    showSlides();
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides() {
+        let i;
+        const slides = document.getElementsByClassName("mySlides");
+        if (slideIndex >= slides.length) { slideIndex = 0 }
+        if (slideIndex < 0) { slideIndex = slides.length - 1 }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex].style.display = "block";
+        slideIndex++;
+        setTimeout(showSlides, 10000); // Change slide every 2 seconds
+    }
+
+    function redirectToServiceSelection() {
+        window.location.href = 'service_selection.html';
+    }
+    function redirectToServiceSelection() {
+        window.location.href = 'service_selection.html';
+    }
+    const counters = {
+            yearsCount: 25,
+            techniciansCount: 100,
+            clientsCount: 500,
+            projectsCount: 1000
+        };
+
+        Object.keys(counters).forEach((counterId, index) => {
+            setTimeout(() => {
+                const targetCount = counters[counterId];
+                const counterElement = document.getElementById(counterId);
+                const increment = Math.ceil(targetCount / 100);
+                let currentCount = 0;
+
+                const intervalId = setInterval(() => {
+                    if (currentCount < targetCount) {
+                        currentCount = Math.min(targetCount, currentCount + increment);
+                        counterElement.textContent = currentCount;
+                    } else {
+                        clearInterval(intervalId);
+                    }
+                }, 10);
+            }, index * 1000); // Delay each counter by 1 second (1000ms)
+        });
+</script>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31111.007612263642!2d77.4780685!3d12.9156935!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3f6b65f63b5b%3A0x20c589588c5a815a!2sTechTune%20Motors%20Multi%20Brand%20Car!5e0!3m2!1sen!2sin!4v1696840766234!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</body>
+</html>
